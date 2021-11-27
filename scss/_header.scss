@@ -1,0 +1,33 @@
+header {
+    background: var(--detalhe);
+    padding: 1rem 0;
+    box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.15);
+    position: fixed;
+    width: 100%;
+
+    .container {
+        justify-content: space-between;
+        align-items: center;
+
+        #theme {
+            background: none;
+            border: none;
+            font-weight: 600;
+            color: var(--texto);
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+
+            &::before {
+                @extend %fontAwesome;
+                content: "\f186";
+                margin-right: 8px;
+            }
+
+            &.ativo::before {
+                @extend %fontAwesome;
+                content: "\f185";
+            }
+        }
+    }
+}

@@ -1,0 +1,95 @@
+@import "tema";
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
+
+%fontAwesome {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 16px;
+    font-family: "Nunito Sans", sans-serif;
+    background: var(--body);
+
+    * {
+        transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    }
+
+    &.escuro {
+        * {
+            transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        }
+    }
+}
+
+.container {
+    display: flex;
+    padding: 0 1rem;
+    transition: 0.3s ease-in-out;
+
+    @media only screen and (min-width: 768px) {
+        padding: 0 2rem;
+    }
+
+    // @media only screen and (min-width: 1048px) {
+    //     padding: 0;
+    //     max-width: 1000px;
+    //     margin: 0 auto;
+    // }
+
+    // @media only screen and (min-width: 1366px) {
+    //     max-width: 1250px;
+    // }
+}
+
+h1,
+p,
+span {
+    line-height: 1.5;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--texto);
+
+    @media only screen and (min-width: 768px) {
+        font-size: 1.5rem;
+    }
+}
+
+h2 {
+    font-size: 1.1rem;
+    font-weight: 800;
+
+    @media only screen and (min-width: 768px) {
+        font-size: 1.25rem;
+    }
+}
+
+.spaninfo {
+    font-weight: 600;
+}
+
+p {
+    font-weight: 300;
+}

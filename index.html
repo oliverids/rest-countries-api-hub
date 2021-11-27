@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/0a7be9467a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.min.css">
+    <title>REST Countries API Hub</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Where in the world?</h1>
+            <button id="theme">Dark Mode</button>
+        </div>
+    </header>
+
+    <section class="navigation">
+        <div class="container">
+            <div class="searchbar">
+                <button><span>Pesquisa</span></button>
+                <input type="text" placeholder="Search for a country...">
+            </div>
+
+            <select name="region" id="region">
+                <option value="Africa"></option>
+                <option value="America"></option>
+                <option value="Asia"></option>
+                <option value="Europe"></option>
+                <option value="Oceania"></option>
+            </select>
+        </div>
+    </section>
+
+    <section class="countries">
+        <ul id="list">
+
+        </ul>
+    </section>
+</body>
+<script>
+    // fetch('https://restcountries.com/v2/all').then(r=> r.json()).then(r => console.log(r))
+</script>
+</html>
