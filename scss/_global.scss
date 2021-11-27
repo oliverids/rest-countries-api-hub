@@ -11,7 +11,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    accent-color: rgb(170, 177, 199);
+    
+    &:focus {
+        outline-color: rgb(170, 177, 199);
+    }
 }
+
 
 img {
     max-width: 100%;
@@ -29,6 +35,7 @@ body {
     font-size: 16px;
     font-family: "Nunito Sans", sans-serif;
     background: var(--body);
+    color: (--texto);
 
     * {
         transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
@@ -92,4 +99,10 @@ h2 {
 
 p {
     font-weight: 300;
+}
+
+button {
+    background: none;
+    border: none; 
+    cursor: pointer;
 }

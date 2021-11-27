@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="css/style.min.css">
     <title>REST Countries API Hub</title>
 </head>
+
 <body>
     <header>
         <div class="container">
@@ -19,17 +21,20 @@
     <section class="navigation">
         <div class="container">
             <div class="searchbar">
-                <button><span>Pesquisa</span></button>
-                <input type="text" placeholder="Search for a country...">
+                <button id="search"><span>Pesquisa</span></button>
+                <input id="input" type="text" placeholder="Search for a country...">
             </div>
 
-            <select name="region" id="region">
-                <option value="Africa"></option>
-                <option value="America"></option>
-                <option value="Asia"></option>
-                <option value="Europe"></option>
-                <option value="Oceania"></option>
-            </select>
+            <div class="filter">
+                <select name="region" id="region">
+                    <option value="" disabled selected>Filter by Region</option>
+                    <option value="africa">Africa</option>
+                    <option value="america">America</option>
+                    <option value="asia">Asia</option>
+                    <option value="europe">Europe</option>
+                    <option value="oceania">Oceania</option>
+                </select>
+            </div>
         </div>
     </section>
 
@@ -39,7 +44,5 @@
         </ul>
     </section>
 </body>
-<script>
-    // fetch('https://restcountries.com/v2/all').then(r=> r.json()).then(r => console.log(r))
-</script>
+<script src="script.js"></script>
 </html>
