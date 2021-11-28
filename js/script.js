@@ -1,3 +1,5 @@
+import App from './app.js';
+
 const theme = document.getElementById('theme'),
     body = document.body;
 theme.addEventListener('click', () => {
@@ -8,4 +10,6 @@ theme.addEventListener('click', () => {
         theme.classList.add('ativo');
         document.body.classList.add('escuro');
     }
-})
+});
+
+App();
