@@ -4,6 +4,7 @@ header {
     box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.15);
     position: fixed;
     width: 100%;
+    z-index: 9999;
 
     .container {
         justify-content: space-between;

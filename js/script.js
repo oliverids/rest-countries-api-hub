@@ -5,10 +5,10 @@ const theme = document.getElementById('theme'),
 theme.addEventListener('click', () => {
     if (theme.classList.contains('ativo')) {
         theme.classList.remove('ativo');
-        document.body.classList.remove('escuro');
+        body.classList.remove('escuro');
     } else {
         theme.classList.add('ativo');
-        document.body.classList.add('escuro');
+        body.classList.add('escuro');
     }
 });
 

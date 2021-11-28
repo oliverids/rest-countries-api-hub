@@ -18,7 +18,7 @@ export default function App() {
                 for (let i = start; i < end; i++) {
                     let countryItem = document.createElement("li");
                     const countryInfo = `
-                    <img src="${r[i].flags.png}">
+                    <img src="${r[i].flags.svg}">
                     <div class="info">
                         <h2>${r[i].name}</h2>
     
@@ -35,5 +35,5 @@ export default function App() {
                 loadMore.addEventListener('click', load);
             });
     }
-    fetching(0, 50)
+    fetching(0, 50);
 }

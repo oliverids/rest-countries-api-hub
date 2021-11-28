@@ -35,7 +35,7 @@ body {
     font-size: 16px;
     font-family: "Nunito Sans", sans-serif;
     background: var(--body);
-    color: (--texto);
+    color: var(--texto);
 
     * {
         transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
