@@ -102,3 +102,43 @@ button {
     cursor: pointer;
     font-family: "Nunito Sans", sans-serif;
 }
+
+#loader {
+    position: fixed;
+    z-index: 99999;
+    height: 100px;
+    width: 100px;
+    padding: 20px;
+    border-radius: 6px;
+    top: 0;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    background: var(--detalhe);
+    box-shadow: 0 0 80px rgba($color: #000000, $alpha: .15);
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+
+    &.ativo {
+        visibility: visible;
+        opacity: 1;
+        transition: all 0.3s ease-in-out;
+    }
+
+    i {
+        font-size: 4rem;
+        color: var(--texto);
+        animation: rotation .8s infinite linear;
+        
+        @keyframes rotation {
+            from {
+              transform: rotate(0deg);
+            }
+            to {
+              transform: rotate(359deg);
+            }
+          }
+    }
+}

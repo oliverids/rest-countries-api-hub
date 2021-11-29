@@ -1,4 +1,7 @@
 export default function App() {
+    const loader = document.getElementById("loader");
+    loader.classList.add('ativo');
+
     let dataFetch;
     fetch('https://restcountries.com/v2/all')
         .then(res => res.json())
@@ -15,13 +18,14 @@ export default function App() {
         loaderror = document.getElementById('loaderror'),
         refresh = document.getElementById('refresh');
 
-    function load() {
+    function load(array) {
+        let chosenArray = array;
         let itensDisplayed = countriesList.childElementCount;
         if (itensDisplayed < 250) {
-            fetching(itensDisplayed, itensDisplayed + 50, dataFetch);
+            fetching(itensDisplayed, itensDisplayed + 50, chosenArray);
         } else {
             loadMore.style.display = 'none';
-            fetching(itensDisplayed, 250, dataFetch);
+            fetching(itensDisplayed, 250, chosenArray);
         }
     };
 
@@ -132,25 +136,30 @@ export default function App() {
     };
 
     function fetching(start, end, array) {
+        let chosenArray = array;
+
         for (let i = start; i < end; i++) {
             let countryItem = document.createElement("li");
             const countryInfo = `
-                    <img src="${array[i].flags.svg}">
+                    <img src="${chosenArray[i].flags.svg}">
                     <div class="info">
-                        <h2>${array[i].name}</h2>
+                        <h2>${chosenArray[i].name}</h2>
 
                         <div>
-                            <p><span class="spaninfo" class="spaninfo">Population:</span> ${array[i].population}</p>
-                            <p><span class="spaninfo">Region:</span> ${array[i].region}</p>
-                            <p><span class="spaninfo">Capital:</span> ${array[i].capital}</p>
+                            <p><span class="spaninfo" class="spaninfo">Population:</span> ${chosenArray[i].population}</p>
+                            <p><span class="spaninfo">Region:</span> ${chosenArray[i].region}</p>
+                            <p><span class="spaninfo">Capital:</span> ${chosenArray[i].capital}</p>
                         </div>
                     </div>
             `;
             countryItem.innerHTML = countryInfo;
             countriesList.appendChild(countryItem);
         }
-        loadMore.addEventListener('click', load);
+        loadMore.addEventListener('click', () => {
+            load(chosenArray)
+        });
         setTimeout(() => ListEventListener(), 1000);
+        loader.classList.remove('ativo');
     }
     setTimeout(() => fetching(0, 50, dataFetch), 1200);
 
@@ -168,22 +177,29 @@ export default function App() {
 
     const regionfilter = document.getElementById('region');
     regionfilter.addEventListener('input', () => {
+        loader.classList.add('ativo');
         if (regionfilter.value !== 'All') {
             const filtered = dataFetch.filter(e => {
                 return e.region == regionfilter.value
             })
             countriesList.querySelectorAll('li').forEach(n => n.remove())
             setTimeout(() => fetching(0, 50, filtered), 1200);
+            loadMore.addEventListener('click', () => {
+                load(filtered)
+            });
+            setTimeout(() => loader.classList.remove('ativo'), 1200);
+
         } else {
             countriesList.querySelectorAll('li').forEach(n => n.remove())
             setTimeout(() => fetching(0, 50, dataFetch), 1200);
+            setTimeout(() => loader.classList.remove('ativo'), 1200);
         }
     })
-
 
     setTimeout(() => {
         if (countriesList.childElementCount == 0) {
             [overlay, loaderror].forEach(e => e.classList.add('ativo'));
+            loader.classList.remove('ativo');
 
             refresh.addEventListener('click', () => {
                 [overlay, loaderror].forEach(e => e.classList.remove('ativo'));
