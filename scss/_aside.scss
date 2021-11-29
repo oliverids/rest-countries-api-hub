@@ -50,24 +50,51 @@
         }
 
         .country-info {
+            @media only screen and (min-width: 1200px) {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                width: 100%;
+                padding: 0 2rem;
+            }
+
             #info-image {
                 margin: 2rem 0;
 
                 img {
                     object-fit: cover;
-                    // width: 320px;
-                    // height: 200px;
                     width: 100%;
+
+                    @media only screen and (min-width: 1200px) {
+                        width: 420px;
+                        height: 270px;
+                    }
                 }
             }
 
             #country-about {
+                @media only screen and (min-width: 1200px) {
+                    display: flex;
+                    flex-direction: column;
+                    max-width: 580px;
+                }
+
                 h2 {
                     font-size: 1.3rem;
                 }
 
                 div {
                     margin-top: 1.5rem;
+        
+                    &.divP {
+                        margin-top: 0;
+
+                        @media only screen and (min-width: 768px) {
+                            display: flex;
+                            justify-content: space-between;
+                            max-width: 580px;
+                        }
+                    }
 
                     p {
                         margin-bottom: 0.8rem;

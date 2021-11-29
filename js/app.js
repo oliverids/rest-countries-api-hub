@@ -45,18 +45,20 @@ export default function App() {
 
         let about = `
                 <h2>${dataFetch[target].name}</h2>
-                <div class="first">
-                    <p><span class="spaninfo">Native Name:</span> ${dataFetch[target].nativeName}</p>
-                    <p><span class="spaninfo">Population:</span> ${dataFetch[target].population}</p>
-                    <p><span class="spaninfo">Region:</span> ${dataFetch[target].region}</p>
-                    <p><span class="spaninfo">Sub Region:</span> ${dataFetch[target].subregion}</p>
-                    <p><span class="spaninfo">Capital:</span> ${dataFetch[target].capital}</p>
-                </div>
+                <div class="divP">
+                    <div class="first">
+                        <p><span class="spaninfo">Native Name:</span> ${dataFetch[target].nativeName}</p>
+                        <p><span class="spaninfo">Population:</span> ${dataFetch[target].population}</p>
+                        <p><span class="spaninfo">Region:</span> ${dataFetch[target].region}</p>
+                        <p><span class="spaninfo">Sub Region:</span> ${dataFetch[target].subregion}</p>
+                        <p><span class="spaninfo">Capital:</span> ${dataFetch[target].capital}</p>
+                    </div>
 
-                <div class="second">
-                    <p><span class="spaninfo">Top Level Domain:</span> ${dataFetch[target].topLevelDomain}</p>
-                    <p><span class="spaninfo">Currencies:</span> ${currenciesArray.toString()}</p>
-                    <p><span class="spaninfo">Languages:</span> ${languagesArray.toString()}</p>
+                    <div class="second">
+                        <p><span class="spaninfo">Top Level Domain:</span> ${dataFetch[target].topLevelDomain}</p>
+                        <p><span class="spaninfo">Currencies:</span> ${currenciesArray.toString()}</p>
+                        <p><span class="spaninfo">Languages:</span> ${languagesArray.toString()}</p>
+                    </div>
                 </div>
             `;
 
@@ -117,7 +119,7 @@ export default function App() {
             countriesList.appendChild(countryItem); 
         }
         loadMore.addEventListener('click', load);
-        setTimeout(() => ListEventListener(), 800);
+        setTimeout(() => ListEventListener(), 1000);
     }
     setTimeout(() => fetching(0, 50), 1000);
 }
