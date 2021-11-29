@@ -11,7 +11,9 @@ export default function App() {
 
     const overlay = document.getElementById('overlay'),
         notfound = document.getElementById('notfound'),
-        ok = document.getElementById('ok');
+        ok = document.getElementById('ok'),
+        loaderror = document.getElementById('loaderror'),
+        refresh = document.getElementById('refresh');
 
     function load() {
         let itensDisplayed = countriesList.childElementCount;
@@ -154,5 +156,17 @@ export default function App() {
     btnSearch.addEventListener('click', Search);
     window.addEventListener('keyup', e => {
         if (e.keyCode == 13) Search();
-    })
+    });
+
+
+    setTimeout(() => {
+        if (countriesList.childElementCount == 0) {
+            [overlay, loaderror].forEach(e => e.classList.add('ativo'));
+
+            refresh.addEventListener('click', () => {
+                [overlay, loaderror].forEach(e => e.classList.remove('ativo'));
+                window.location.reload();
+            })
+        }
+    }, 2000);
 }
