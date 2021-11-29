@@ -1,0 +1,72 @@
+#overlay {
+    position: fixed;
+    z-index: 99999;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    overflow-y: hidden;
+    background: rgba($color: #000000, $alpha: 0.4);
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+
+    &.ativo {
+        opacity: 1;
+        visibility: visible;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .erro-btn {
+        font-size: 1rem;
+        color: #fff;
+        font-weight: 800;
+        padding: 8px 22px;
+        background: rgb(81, 86, 102);
+        border-radius: 6px;
+
+        &:hover {
+            background: rgb(59, 63, 75);
+        }
+    }
+
+    #notfound {
+        width: 320px;
+        height: 240px;
+        padding: 1rem;
+        border-radius: 4px;
+        background: var(--detalhe);
+        color: var(--texto);
+        box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.2);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -160px;
+        margin-left: -161px;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-100px);
+        transition: all 0.3s ease-in-out;
+
+        &.ativo {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.3s ease-in-out;
+        }
+
+        i {
+            font-size: 3.5rem;
+            color: rgb(220, 150, 150);
+        }
+
+        p {
+            text-align: center;
+            margin: 1rem 0 2rem 0;
+            font-weight: 600;
+        }
+    }
+}

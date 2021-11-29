@@ -9,6 +9,10 @@ export default function App() {
         aside = document.getElementById("aside"),
         asideBack = document.getElementById('back');
 
+    const overlay = document.getElementById('overlay'),
+        notfound = document.getElementById('notfound'),
+        ok = document.getElementById('ok');
+
     function load() {
         let itensDisplayed = countriesList.childElementCount;
         if (itensDisplayed < 250) {
@@ -116,10 +120,39 @@ export default function App() {
                     </div>
             `;
             countryItem.innerHTML = countryInfo;
-            countriesList.appendChild(countryItem); 
+            countriesList.appendChild(countryItem);
         }
         loadMore.addEventListener('click', load);
         setTimeout(() => ListEventListener(), 1000);
     }
-    setTimeout(() => fetching(0, 50), 1000);
+    setTimeout(() => fetching(0, 50), 1200);
+
+    const input = document.getElementById('input'),
+        btnSearch = document.getElementById('search');
+
+    function Search() {
+        let valor = input.value.toLowerCase().replace(/\s/g, '');
+
+        fetch(`https://restcountries.com/v2/name/${valor}`)
+            .then(r => r.json())
+            .then(r => {
+                if (r.message == 'Not Found') {
+                    [overlay, notfound].forEach(e => e.classList.add('ativo'));
+
+                    ok.addEventListener('click', () => {
+                        [overlay, notfound].forEach(e => e.classList.remove('ativo'));
+                    })
+                } else {
+                    let nome = r[0].name;
+                    console.log(r[0].name)
+                    const index = dataFetch.map(e => e.name).indexOf(nome);
+                    openTab(index)
+                }
+            })
+    }
+
+    btnSearch.addEventListener('click', Search);
+    window.addEventListener('keyup', e => {
+        if (e.keyCode == 13) Search();
+    })
 }
