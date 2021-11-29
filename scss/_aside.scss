@@ -85,7 +85,7 @@
 
                 div {
                     margin-top: 1.5rem;
-        
+
                     &.divP {
                         margin-top: 0;
 
@@ -118,12 +118,15 @@
 
                             li {
                                 margin: 0 12px 12px 0;
-                                padding: 8px 20px;
                                 border-radius: 4px;
                                 box-shadow: 0 0 10px rgba($color: #000, $alpha: 0.15);
-                                font-size: 1rem;
-                                color: var(--texto);
-                                font-weight: 600;
+
+                                button {
+                                    padding: 8px 20px;
+                                    font-size: 1rem;
+                                    color: var(--texto);
+                                    font-weight: 600;
+                                }
                             }
                         }
                     }

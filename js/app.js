@@ -25,6 +25,25 @@ export default function App() {
         }
     };
 
+    function Search(valor) {
+        fetch(`https://restcountries.com/v2/name/${valor}`)
+            .then(r => r.json())
+            .then(r => {
+                if (r.message == 'Not Found') {
+                    [overlay, notfound].forEach(e => e.classList.add('ativo'));
+
+                    ok.addEventListener('click', () => {
+                        [overlay, notfound].forEach(e => e.classList.remove('ativo'));
+                    })
+                } else {
+                    let nome = r[0].name;
+                    console.log(r[0].name)
+                    const index = dataFetch.map(e => e.name).indexOf(nome);
+                    openTab(index)
+                }
+            })
+    }
+
     function openTab(target) {
         aside.classList.add('ativo');
         document.body.style.overflowY = 'hidden';
@@ -79,7 +98,7 @@ export default function App() {
                 fetch(`https://restcountries.com/v2/alpha/${dataFetch[target].borders[i].toLowerCase()}`)
                     .then(r => r.json()).then(r => {
                         let item = document.createElement('li');
-                        item.innerText = r.name;
+                        item.innerHTML = `<button class="border-btn">${r.name}</button>`;
                         borderlist.appendChild(item);
                     })
             }
@@ -89,6 +108,14 @@ export default function App() {
         countryAbout.innerHTML = about;
         countryAbout.appendChild(borders);
         infoImage.innerHTML = image;
+
+        setTimeout(() => {
+            let borderButtons = document.querySelectorAll('.border-btn');
+            borderButtons.forEach(each => each.addEventListener('click', event => {
+                console.log(event.currentTarget.innerText)
+                Search(event.currentTarget.innerText)
+            }))
+        }, 700);
     };
 
     function ListEventListener() {
@@ -130,30 +157,13 @@ export default function App() {
     const input = document.getElementById('input'),
         btnSearch = document.getElementById('search');
 
-    function Search() {
+    btnSearch.addEventListener('click', () => {
         let valor = input.value.toLowerCase().replace(/\s/g, '');
-
-        fetch(`https://restcountries.com/v2/name/${valor}`)
-            .then(r => r.json())
-            .then(r => {
-                if (r.message == 'Not Found') {
-                    [overlay, notfound].forEach(e => e.classList.add('ativo'));
-
-                    ok.addEventListener('click', () => {
-                        [overlay, notfound].forEach(e => e.classList.remove('ativo'));
-                    })
-                } else {
-                    let nome = r[0].name;
-                    console.log(r[0].name)
-                    const index = dataFetch.map(e => e.name).indexOf(nome);
-                    openTab(index)
-                }
-            })
-    }
-
-    btnSearch.addEventListener('click', Search);
+        Search(valor);
+    });
     window.addEventListener('keyup', e => {
-        if (e.keyCode == 13) Search();
+        let valor = input.value.toLowerCase().replace(/\s/g, '');
+        if (e.keyCode == 13) Search(valor);
     });
 
     const regionfilter = document.getElementById('region');
