@@ -95,14 +95,12 @@ export default function App() {
         let index,
             countriesArray = Array.from(countriesList.children);
 
-        countriesList.addEventListener('click', e => {
-            if (e.target.nodeName === 'LI') {
-                index = countriesArray.indexOf(e.target);
-                openTab(index);
-            } else {
-                index = countriesArray.indexOf(e.target.closest('li'));
+        let items = countriesList.querySelectorAll('li');
+        items.forEach(item => {
+            item.addEventListener('click', event => {
+                index = countriesArray.indexOf(event.currentTarget)
                 openTab(index)
-            }
+            })
         })
     };
 
