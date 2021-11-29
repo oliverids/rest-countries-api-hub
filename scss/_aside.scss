@@ -1,0 +1,107 @@
+#aside {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    z-index: 999999;
+    top: 0;
+    background: var(--detalhe);
+    color: var(--texto);
+    padding-top: 2rem;
+    transform: translateX(800px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    overflow-y: scroll;
+
+    &.ativo {
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 2rem;
+
+        #back {
+            padding: 8px 20px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba($color: #000, $alpha: 0.3);
+            font-size: 1rem;
+            color: var(--texto);
+            font-weight: 600;
+            align-self: flex-start;
+
+            span {
+                display: flex;
+                align-items: center;
+
+                &::before {
+                    @extend %fontAwesome;
+                    display: block;
+                    content: "\f060";
+                    color: var(--texto);
+                    margin-right: 8px;
+                }
+            }
+        }
+
+        .country-info {
+            #info-image {
+                margin: 2rem 0;
+
+                img {
+                    object-fit: cover;
+                    // width: 320px;
+                    // height: 200px;
+                    width: 100%;
+                }
+            }
+
+            #country-about {
+                h2 {
+                    font-size: 1.3rem;
+                }
+
+                div {
+                    margin-top: 1.5rem;
+
+                    p {
+                        margin-bottom: 0.8rem;
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    &.borders {
+                        h3 {
+                            font-size: 1.1rem;
+                        }
+
+                        ul {
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: flex-start;
+                            align-items: center;
+                            margin-top: 1rem;
+
+                            li {
+                                margin: 0 12px 12px 0;
+                                padding: 8px 20px;
+                                border-radius: 4px;
+                                box-shadow: 0 0 10px rgba($color: #000, $alpha: 0.15);
+                                font-size: 1rem;
+                                color: var(--texto);
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
