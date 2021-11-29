@@ -18,10 +18,10 @@ export default function App() {
     function load() {
         let itensDisplayed = countriesList.childElementCount;
         if (itensDisplayed < 250) {
-            fetching(itensDisplayed, itensDisplayed + 50);
+            fetching(itensDisplayed, itensDisplayed + 50, dataFetch);
         } else {
             loadMore.style.display = 'none';
-            fetching(itensDisplayed, 250);
+            fetching(itensDisplayed, 250, dataFetch);
         }
     };
 
@@ -106,18 +106,18 @@ export default function App() {
         })
     };
 
-    function fetching(start, end) {
+    function fetching(start, end, array) {
         for (let i = start; i < end; i++) {
             let countryItem = document.createElement("li");
             const countryInfo = `
-                    <img src="${dataFetch[i].flags.svg}">
+                    <img src="${array[i].flags.svg}">
                     <div class="info">
-                        <h2>${dataFetch[i].name}</h2>
+                        <h2>${array[i].name}</h2>
 
                         <div>
-                            <p><span class="spaninfo" class="spaninfo">Population:</span> ${dataFetch[i].population}</p>
-                            <p><span class="spaninfo">Region:</span> ${dataFetch[i].region}</p>
-                            <p><span class="spaninfo">Capital:</span> ${dataFetch[i].capital}</p>
+                            <p><span class="spaninfo" class="spaninfo">Population:</span> ${array[i].population}</p>
+                            <p><span class="spaninfo">Region:</span> ${array[i].region}</p>
+                            <p><span class="spaninfo">Capital:</span> ${array[i].capital}</p>
                         </div>
                     </div>
             `;
@@ -127,7 +127,7 @@ export default function App() {
         loadMore.addEventListener('click', load);
         setTimeout(() => ListEventListener(), 1000);
     }
-    setTimeout(() => fetching(0, 50), 1200);
+    setTimeout(() => fetching(0, 50, dataFetch), 1200);
 
     const input = document.getElementById('input'),
         btnSearch = document.getElementById('search');
@@ -157,6 +157,20 @@ export default function App() {
     window.addEventListener('keyup', e => {
         if (e.keyCode == 13) Search();
     });
+
+    const regionfilter = document.getElementById('region');
+    regionfilter.addEventListener('input', () => {
+        if (regionfilter.value !== 'All') {
+            const filtered = dataFetch.filter(e => {
+                return e.region == regionfilter.value
+            })
+            countriesList.querySelectorAll('li').forEach(n => n.remove())
+            setTimeout(() => fetching(0, 50, filtered), 1200);
+        } else {
+            countriesList.querySelectorAll('li').forEach(n => n.remove())
+            setTimeout(() => fetching(0, 50, dataFetch), 1200);
+        }
+    })
 
 
     setTimeout(() => {
