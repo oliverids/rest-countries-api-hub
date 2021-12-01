@@ -22,10 +22,10 @@ export default function App() {
         let chosenArray = array;
         let itensDisplayed = countriesList.childElementCount;
         if (itensDisplayed < 250) {
-            fetching(itensDisplayed, itensDisplayed + 50, chosenArray);
+            fetching(itensDisplayed, itensDisplayed + 50, chosenArray, 'no');
         } else {
             loadMore.style.display = 'none';
-            fetching(itensDisplayed, 250, chosenArray);
+            fetching(itensDisplayed, 250, chosenArray, 'no');
         }
     };
 
@@ -135,8 +135,9 @@ export default function App() {
         })
     };
 
-    function fetching(start, end, array) {
-        let chosenArray = array;
+    function fetching(start, end, array, sort) {
+        let chosenArray = array,
+            filtering = sort;
 
         for (let i = start; i < end; i++) {
             let countryItem = document.createElement("li");
@@ -155,13 +156,17 @@ export default function App() {
             countryItem.innerHTML = countryInfo;
             countriesList.appendChild(countryItem);
         }
-        loadMore.addEventListener('click', () => {
-            load(chosenArray)
-        });
+        if(filtering == 'no') {
+            loadMore.addEventListener('click', () => {
+                load(chosenArray)
+            });
+        } else {
+            loadMore.style.display = 'none';
+        }
         setTimeout(() => ListEventListener(), 1000);
         loader.classList.remove('ativo');
     }
-    setTimeout(() => fetching(0, 50, dataFetch), 1200);
+    setTimeout(() => fetching(0, 50, dataFetch, 'no'), 1200);
 
     const input = document.getElementById('input'),
         btnSearch = document.getElementById('search');
@@ -183,7 +188,7 @@ export default function App() {
                 return e.region == regionfilter.value
             })
             countriesList.querySelectorAll('li').forEach(n => n.remove())
-            setTimeout(() => fetching(0, 50, filtered), 1200);
+            setTimeout(() => fetching(0, filtered.length, filtered, 'yes'), 1200);
             loadMore.addEventListener('click', () => {
                 load(filtered)
             });
@@ -191,7 +196,7 @@ export default function App() {
 
         } else {
             countriesList.querySelectorAll('li').forEach(n => n.remove())
-            setTimeout(() => fetching(0, 50, dataFetch), 1200);
+            setTimeout(() => fetching(0, 50, dataFetch, 'no'), 1200);
             setTimeout(() => loader.classList.remove('ativo'), 1200);
         }
     })
