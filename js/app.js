@@ -157,11 +157,12 @@ export default function App() {
             countriesList.appendChild(countryItem);
         }
         if(filtering == 'no') {
+            loadMore.style.visibility = 'visible';
             loadMore.addEventListener('click', () => {
                 load(chosenArray)
             });
         } else {
-            loadMore.style.display = 'none';
+            loadMore.style.visibility = 'hidden';
         }
         setTimeout(() => ListEventListener(), 1000);
         loader.classList.remove('ativo');
