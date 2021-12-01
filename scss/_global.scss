@@ -149,10 +149,35 @@ footer {
 
     p {
         margin: 0 auto;
-        
+
         a {
             font-weight: 800;
             color: var(--texto);
         }
+    }
+}
+
+#scrollUp {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    padding: 1rem;
+    color: var(--texto);
+    background: var(--detalhe);
+    border-radius: 6px;
+    box-shadow: 0 0 15px rgba($color: #000000, $alpha: 0.15);
+
+    &:hover {
+        box-shadow: 0 0 15px rgba($color: #000000, $alpha: 0.3);
+    }
+
+    &::before {
+        @extend %fontAwesome;
+        content: "\f077";
+    }
+
+    span {
+        position: absolute;
+        left: -9999px;
     }
 }

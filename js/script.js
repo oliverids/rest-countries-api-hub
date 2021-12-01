@@ -12,4 +12,13 @@ theme.addEventListener('click', () => {
     }
 });
 
+let scrollUp = document.getElementById('scrollUp');
+scrollUp.addEventListener('click', e => {
+    let topo = document.querySelector('body');
+    topo.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    })
+})
+
 App();

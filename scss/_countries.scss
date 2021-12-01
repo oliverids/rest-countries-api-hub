@@ -23,6 +23,10 @@
                 width: 320px;
                 min-height: 341px;
 
+                &:hover {
+                    box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.3);
+                }
+
                 @media only screen and (min-width: 500px) {
                     margin: 0 2rem 2rem 2rem;
                 }
