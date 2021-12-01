@@ -47,7 +47,7 @@ export default function App() {
             })
     }
 
-    function openTab(target) {
+    function openTab(target, array) {
         aside.classList.add('ativo');
         document.body.style.overflowY = 'hidden';
 
@@ -59,31 +59,31 @@ export default function App() {
         const infoImage = document.getElementById('info-image'),
             countryAbout = document.getElementById('country-about');
 
-        let image = `<img src="${dataFetch[target].flags.svg}"></img>`;
+        let image = `<img src="${array[target].flags.svg}"></img>`;
 
         let languagesArray = [];
-        for (let i = 0; i < dataFetch[target].languages.length; i++) {
-            languagesArray.push(` ${dataFetch[target].languages[i].name}`)
+        for (let i = 0; i < array[target].languages.length; i++) {
+            languagesArray.push(` ${array[target].languages[i].name}`)
         }
 
         let currenciesArray = [];
-        for (let i = 0; i < dataFetch[target].currencies.length; i++) {
-            currenciesArray.push(` ${dataFetch[target].currencies[i].name}`)
+        for (let i = 0; i < array[target].currencies.length; i++) {
+            currenciesArray.push(` ${array[target].currencies[i].name}`)
         }
 
         let about = `
-                <h2>${dataFetch[target].name}</h2>
+                <h2>${array[target].name}</h2>
                 <div class="divP">
                     <div class="first">
-                        <p><span class="spaninfo">Native Name:</span> ${dataFetch[target].nativeName}</p>
-                        <p><span class="spaninfo">Population:</span> ${dataFetch[target].population}</p>
-                        <p><span class="spaninfo">Region:</span> ${dataFetch[target].region}</p>
-                        <p><span class="spaninfo">Sub Region:</span> ${dataFetch[target].subregion}</p>
-                        <p><span class="spaninfo">Capital:</span> ${dataFetch[target].capital}</p>
+                        <p><span class="spaninfo">Native Name:</span> ${array[target].nativeName}</p>
+                        <p><span class="spaninfo">Population:</span> ${array[target].population}</p>
+                        <p><span class="spaninfo">Region:</span> ${array[target].region}</p>
+                        <p><span class="spaninfo">Sub Region:</span> ${array[target].subregion}</p>
+                        <p><span class="spaninfo">Capital:</span> ${array[target].capital}</p>
                     </div>
 
                     <div class="second">
-                        <p><span class="spaninfo">Top Level Domain:</span> ${dataFetch[target].topLevelDomain}</p>
+                        <p><span class="spaninfo">Top Level Domain:</span> ${array[target].topLevelDomain}</p>
                         <p><span class="spaninfo">Currencies:</span> ${currenciesArray.toString()}</p>
                         <p><span class="spaninfo">Languages:</span> ${languagesArray.toString()}</p>
                     </div>
@@ -96,9 +96,9 @@ export default function App() {
         borders.classList.add('borders');
         borderTitle.innerText = 'Border Countries';
 
-        if (dataFetch[target].borders !== undefined) {
-            for (let i = 0; i < dataFetch[target].borders.length; i++) {
-                fetch(`https://restcountries.com/v2/alpha/${dataFetch[target].borders[i].toLowerCase()}`)
+        if (array[target].borders !== undefined) {
+            for (let i = 0; i < array[target].borders.length; i++) {
+                fetch(`https://restcountries.com/v2/alpha/${array[target].borders[i].toLowerCase()}`)
                     .then(r => r.json()).then(r => {
                         let item = document.createElement('li');
                         item.innerHTML = `<button class="border-btn">${r.name}</button>`;
@@ -120,15 +120,14 @@ export default function App() {
         }, 700);
     };
 
-    function ListEventListener() {
+    function ListEventListener(array) {
         let index,
             countriesArray = Array.from(countriesList.children);
-
         let items = countriesList.querySelectorAll('li');
         items.forEach(item => {
             item.addEventListener('click', event => {
                 index = countriesArray.indexOf(event.currentTarget)
-                openTab(index)
+                openTab(index, array)
             })
         })
     };
@@ -163,7 +162,7 @@ export default function App() {
         } else {
             loadMore.style.visibility = 'hidden';
         }
-        setTimeout(() => ListEventListener(), 1000);
+        setTimeout(() => ListEventListener(chosenArray), 1000);
         loader.classList.remove('ativo');
     }
     setTimeout(() => fetching(0, 50, dataFetch, 'no'), 1200);
@@ -180,7 +179,7 @@ export default function App() {
         let valor = input.value.toLowerCase().replace(/\s/g, '');
         Search(valor);
     });
-    
+
     window.addEventListener('keyup', e => {
         let valor = input.value.toLowerCase().replace(/\s/g, '');
         if (e.keyCode == 13) Search(valor);
@@ -201,11 +200,12 @@ export default function App() {
                 load(filtered)
             });
             setTimeout(() => loader.classList.remove('ativo'), 1200);
-
+            setTimeout(() => ListEventListener(filtered), 1000);
         } else {
             countriesList.querySelectorAll('li').forEach(n => n.remove())
             setTimeout(() => fetching(0, 50, dataFetch, 'no'), 1200);
             setTimeout(() => loader.classList.remove('ativo'), 1200);
+            setTimeout(() => ListEventListener(dataFetch), 1000);
         }
     })
 
