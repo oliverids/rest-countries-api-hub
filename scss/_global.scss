@@ -141,3 +141,18 @@ button {
         }
     }
 }
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    color: var(--texto);
+
+    p {
+        margin: 0 auto;
+        
+        a {
+            font-weight: 800;
+            color: var(--texto);
+        }
+    }
+}

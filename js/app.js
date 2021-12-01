@@ -24,7 +24,7 @@ export default function App() {
         if (itensDisplayed < 250) {
             fetching(itensDisplayed, itensDisplayed + 50, chosenArray, 'no');
         } else {
-            loadMore.style.display = 'none';
+            loadMore.style.visibility = 'hidden';
             fetching(itensDisplayed, 250, chosenArray, 'no');
         }
     };
@@ -187,6 +187,7 @@ export default function App() {
 
     const regionfilter = document.getElementById('region');
     regionfilter.addEventListener('input', () => {
+        loadMore.style.visibility = 'hidden';
         aside.classList.remove('ativo');
         document.body.style.overflowY = 'visible';
         loader.classList.add('ativo');
