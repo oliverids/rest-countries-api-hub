@@ -41,7 +41,6 @@ export default function App() {
                     })
                 } else {
                     let nome = r[0].name;
-                    console.log(r[0].name)
                     const index = dataFetch.map(e => e.name).indexOf(nome);
                     openTab(index)
                 }
@@ -116,7 +115,6 @@ export default function App() {
         setTimeout(() => {
             let borderButtons = document.querySelectorAll('.border-btn');
             borderButtons.forEach(each => each.addEventListener('click', event => {
-                console.log(event.currentTarget.innerText)
                 Search(event.currentTarget.innerText)
             }))
         }, 700);
@@ -141,6 +139,7 @@ export default function App() {
 
         for (let i = start; i < end; i++) {
             let countryItem = document.createElement("li");
+            countryItem.classList.add('country-item');
             const countryInfo = `
                     <img src="${chosenArray[i].flags.svg}">
                     <div class="info">
@@ -156,7 +155,7 @@ export default function App() {
             countryItem.innerHTML = countryInfo;
             countriesList.appendChild(countryItem);
         }
-        if(filtering == 'no') {
+        if (filtering == 'no') {
             loadMore.style.visibility = 'visible';
             loadMore.addEventListener('click', () => {
                 load(chosenArray)
@@ -172,10 +171,16 @@ export default function App() {
     const input = document.getElementById('input'),
         btnSearch = document.getElementById('search');
 
+    input.addEventListener('input', () => {
+        aside.classList.remove('ativo');
+        document.body.style.overflowY = 'visible';
+    })
+
     btnSearch.addEventListener('click', () => {
         let valor = input.value.toLowerCase().replace(/\s/g, '');
         Search(valor);
     });
+    
     window.addEventListener('keyup', e => {
         let valor = input.value.toLowerCase().replace(/\s/g, '');
         if (e.keyCode == 13) Search(valor);
@@ -183,6 +188,8 @@ export default function App() {
 
     const regionfilter = document.getElementById('region');
     regionfilter.addEventListener('input', () => {
+        aside.classList.remove('ativo');
+        document.body.style.overflowY = 'visible';
         loader.classList.add('ativo');
         if (regionfilter.value !== 'All') {
             const filtered = dataFetch.filter(e => {

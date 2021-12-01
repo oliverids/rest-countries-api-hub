@@ -13,6 +13,12 @@
     transition: all 0.3s ease-in-out;
     overflow-y: scroll;
 
+    @media only screen and (min-width: 1000px) {
+        box-shadow: 0 0 10px rgba($color: #000000, $alpha: .2);
+        right: 0;
+        width: 65%;
+    }
+
     &.ativo {
         transform: translateX(0);
         opacity: 1;
