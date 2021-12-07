@@ -72,8 +72,8 @@
                     width: 100%;
 
                     @media only screen and (min-width: 1200px) {
-                        width: 420px;
-                        height: 270px;
+                        width: 380px;
+                        margin: 0;
                     }
                 }
             }
@@ -82,7 +82,7 @@
                 @media only screen and (min-width: 1200px) {
                     display: flex;
                     flex-direction: column;
-                    max-width: 580px;
+                    max-width: 460px;
                 }
 
                 h2 {

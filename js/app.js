@@ -42,7 +42,8 @@ export default function App() {
                 } else {
                     let nome = r[0].name;
                     const index = dataFetch.map(e => e.name).indexOf(nome);
-                    openTab(index)
+                    console.log(index)
+                    openTab(index, dataFetch)
                 }
             })
     }
