@@ -141,7 +141,7 @@ export default function App() {
             let countryItem = document.createElement("li");
             countryItem.classList.add('country-item');
             const countryInfo = `
-                    <img src="${chosenArray[i].flags.svg}">
+                <img src="${chosenArray[i].flags.svg}">
                     <div class="info">
                         <h2>${chosenArray[i].name}</h2>
 
@@ -166,7 +166,7 @@ export default function App() {
         setTimeout(() => ListEventListener(chosenArray), 1000);
         loader.classList.remove('ativo');
     }
-    setTimeout(() => fetching(0, 50, dataFetch, 'no'), 1200);
+    setTimeout(() => fetching(0, 50, dataFetch, 'no'), 2000);
 
     const input = document.getElementById('input'),
         btnSearch = document.getElementById('search');
@@ -221,5 +221,5 @@ export default function App() {
                 window.location.reload();
             })
         }
-    }, 2000);
+    }, 3500);
 }
